@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class = "container">
+    <div class="container">
+        <h1 class="text-center">Add New Members</h1>
+    </div>
+    <div class="container">
+        <form action=""method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+            <label for="" class="from-labels">First Name</label>
+            <input type="text" class="form-control" name="fname">
+            </div>
+            <div class="mb-3">
+            <label for="" class="from-labels">Last Name</label>
+            <input type="text" class="form-control" name="lname">
+            </div>
+            <div class="mb-3">
+            <label for="" class="from-labels">Email</label>
+            <input type="text" class="form-control" name="email">
+            </div>
+            <div class="mb-3">
+            <label for="" class="from-labels">Contact</label>
+            <input type="text" class="form-control" name="contact">
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+           
+        </form>
+    </div>
+
+</div>
+    <div class="container">
+        <h1>All Members data</h1>
+    </div>
+        <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Contact</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for member in all %}
+                <tr>
+                    <td>{{ member.id }}</td>
+                    <td>{{ member.fname }}</td>
+                    <td>{{ member.lname }}</td>
+                    <td>{{ member.email }}</td>
+                    <td>{{ member.contact }}</td>
+                    <td>
+                        <a href="/update/{{item.id}}" class="btn btn-dark btn-sm"role="btn">Update</a>
+                        <a href="/delete" class="btn btn-dark btn-sm"role="btn">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+    </div>
+{% endblock body %}
